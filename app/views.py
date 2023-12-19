@@ -33,6 +33,21 @@ def display_accessrecord(request):
     QLAO=AccessRecord.objects.exclude(date='2023-12-07').order_by(Length('author').desc())
     QLAO=AccessRecord.objects.exclude(date='2023-12-07').order_by(Length('author'))
     QLAO=AccessRecord.objects.exclude(date='2023-12-07').order_by('author')
+    QLAO=AccessRecord.objects.filter(date__lt='2023-12-07')
+    QLAO=AccessRecord.objects.filter(date__year='2023')
+    QLAO=AccessRecord.objects.filter(date__month='12')
+    QLAO=AccessRecord.objects.filter(date__day='12')
+    QLAO=AccessRecord.objects.filter(author__startswith='s')
+    QLAO=AccessRecord.objects.filter(pk__in=[3,4])
+    QLAO=AccessRecord.objects.filter(author__endswith='i')
+    QLAO=AccessRecord.objects.filter(author__contains='i')
+    QLAO=AccessRecord.objects.filter(date__lte='2023-12-07')
+    QLAO=AccessRecord.objects.filter(date__gte='2023-12-07')
+    
+    QLAO=AccessRecord.objects.filter(date__day__gt='07')
+    QLAO=AccessRecord.objects.filter(date__month__gte='12')
+    QLAO=AccessRecord.objects.filter(date__day='07')
+    QLAO=AccessRecord.objects.filter(date__year__lt='2023')
     d={'QLAO':QLAO}
     return render(request,'display_accessrecord.html',d)
 
